@@ -11,6 +11,8 @@ class LinkedList {
 			Node* next;
 			Node* prev;
 		};
+		
+		//we initialize with head and tail being dummies pointing to eachother
 		LinkedList() : head(new Node), tail(new Node) {
 			head->next = tail;
 			tail->prev = head;
@@ -23,20 +25,31 @@ class LinkedList {
 			delete tail;
 		}
 		
+		//empty: head<->tail and head and tail are both blank
 		bool empty() const { return (head->next == tail); }
+		
+		//we define front and back to be one after and one before head and tail respectively
 		const T& front() const { return head->next->elem; }
 		const T& back() const { return tail->prev->elem; }
 		
 		void add(Node* v, const T& e) {
+			//initialize node w e data
 			Node* u = new Node; u->elem = e;
+			
+			//link it to passed node
 			u->next = v;
+			
+			//link new node to passed's prev node
 			u->prev = v->prev;
+			
+			//link link passed prev's next to this node
 			v->prev->next = v->prev = u;
 		}
 		
 		void addFront(const T& e) { add(head->next, e); }
 		void addBack(const T& e) { add(tail, e); }
 		
+		//link prev to next and delete
 		void remove(Node* v) {
 			Node* u = v->prev;
 			Node* w = v->next;
