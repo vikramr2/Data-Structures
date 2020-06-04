@@ -50,7 +50,10 @@ class LinkedList {
 		void addBack(const T& e) { add(tail, e); }
 		
 		//link prev to next and delete
-		void remove(Node* v) {
+		void remove(Node* v) throw() {
+			if (empty()) {
+				throw("Can't remove from Empty List");
+			}
 			Node* u = v->prev;
 			Node* w = v->next;
 			u->next = w;
@@ -58,8 +61,8 @@ class LinkedList {
 			delete v;
 		}
 		
-		void removeFront() { remove(head->next); }
-		void removeBack() { remove(tail->prev); }
+		void removeFront() throw() { remove(head->next); }
+		void removeBack() throw() { remove(tail->prev); }
 		
 		Node* head;
 		Node* tail;

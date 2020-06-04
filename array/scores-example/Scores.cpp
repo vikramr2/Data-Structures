@@ -11,6 +11,17 @@ Scores::~Scores() {
 }
 
 void Scores::add(const GameEntry& e)  {
+	string name = e.name;
+	int count = 0;
+	for (int i = 0; i < numEntries; i++) {
+		if (entries[i].name == name) {
+			count++;
+		}
+	}
+	if (count >= maxEntries/2) {
+		return;
+	}
+	
 	int newScore = e.score;
 	if (numEntries == maxEntries) {
 		if (newScore <= entries[maxEntries - 1].score) {

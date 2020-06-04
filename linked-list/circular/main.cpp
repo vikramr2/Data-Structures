@@ -14,5 +14,7 @@ int main() {
 	cout << *l << endl;
 	l->remove();
 	cout << *l << endl;
+	l->reverse();
+	cout << *l << endl;
 	delete l;
 }

@@ -10,7 +10,7 @@ class LinkedList {
 			T elem;
 			Node* next;
 		};
-		LinkedList() : head(NULL) {}
+		LinkedList() : head(NULL), s(0) {}
 		
 		//delete each front in succession
 		~LinkedList() { while(!empty()) removeFront(); }
@@ -24,6 +24,7 @@ class LinkedList {
 			h->elem = e;
 			h->next = head;
 			head = h;
+			s++;
 		}
 		
 		//reset head and delete old head
@@ -31,8 +32,13 @@ class LinkedList {
 			Node* h = head;
 			head = h->next;
 			delete h;
+			s--;
 		}
 		Node* head;
+		
+		int size() { return s; }
+	private:
+		int s;
 };
 
 template<typename T>

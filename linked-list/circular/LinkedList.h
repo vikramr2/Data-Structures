@@ -20,7 +20,12 @@ class LinkedList {
 		
 		/*Advance the cursor to the next node T
 		  This essentially rotates the list*/
-		void advance() { cursor = cursor->next; }
+		void advance() throw() { 
+			if (empty()) {
+				throw("Cant advance");
+			}
+			cursor = cursor->next; 
+		}
 		
 		void add(const T& e) {
 			//initialize node
@@ -40,7 +45,10 @@ class LinkedList {
 			}
 		}
 		
-		void remove() {
+		void remove() throw() {
+			if (empty()) {
+				throw("Cant remove");
+			}
 			Node* n = cursor->next;
 			if (n == cursor) { 
 				//is this the only node?
@@ -54,6 +62,9 @@ class LinkedList {
 		}
 			
 		Node* cursor;
+		
+	private:
+		int size;
 };
 
 template<typename T>
