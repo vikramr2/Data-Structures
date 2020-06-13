@@ -83,6 +83,25 @@ class List {
 		}
 		void eraseFront() { erase(begin()); }
 		void eraseBack() { erase(--end()); }
+		
+		//ADDING THESE METHODS FORMS A SEQUENCE
+		Iterator atIndex(int i) const {
+			Iterator p = begin();
+			
+			//increment i times
+			for (int j = 0; j < i; j++) ++p;
+			return p;
+		}
+		int indexOf(const Iterator& p) const {
+			Iterator q = begin();
+			int j = 0;
+			
+			//increment until theres a match
+			while (q != p) {
+				++q; ++j;
+			}
+			return j;
+		}
 	private:
 		int n;
 		Node* header;

@@ -14,4 +14,7 @@ int main() {
 		cout << *i << ' ';
 	}
 	cout << endl;
+	
+	cout << *l.atIndex(1) << endl;
+	cout << l.indexOf(++(++l.begin())) << endl;
 }
