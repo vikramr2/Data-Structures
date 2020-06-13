@@ -50,7 +50,7 @@ class Vector {
 		T operator [](int i) const { return data[i]; }
 		
 		//adds element and increases the length of the list by one
-		void add(T e, int i) throw(out_of_range) {
+		void add(T e, int i) {
 			//overflow check: is our number of elements greater than current capacity?
 			if (len >= capacity) {
 				reserve(max(1, 2*capacity));
@@ -66,6 +66,15 @@ class Vector {
 			len++;
 		}
 		
+		//sets value at i to e
+		void set(T e, int i) throw(out_of_range) {
+			//check invalid index
+			if (i < 0 || i >= len) {
+				throw out_of_range("Invalid Index");
+			}
+			data[i] = e;
+		}
+		
 		//removes element and decreases size by 1
 		void remove(int i) {
 			//shift left and decrement length
@@ -75,13 +84,18 @@ class Vector {
 			len--;
 		}
 		
-		
+		//extends array for more space
 		void reserve(int N) {
+			//underflow
 			if (capacity >= N) return;
+			
+			//init new array with new length, copy vals
 			T* B = new T[N];
 			for (int j = 0; j < len; j++) {
 				B[j] = data[j];
 			}
+			
+			//clean up
 			if (data) delete[] data;
 			data = B;
 			capacity = N;
@@ -89,7 +103,8 @@ class Vector {
 		
 		int size() { return len; }
 		bool empty() { return (len == 0); }
-
+	
+		//insertion sort
 		void sort() {
 			for (int i = 1; i < len; i++) {
 				T cur = data[i];
