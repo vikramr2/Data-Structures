@@ -12,8 +12,22 @@ class List {
 				T& operator*() { return v->elem; }
 				bool operator==(const Iterator& p) const { return v == p.v; }
 				bool operator!=(const Iterator& p) const { return v != p.v; }
+				
+				//pre-increment: modifies
 				Iterator& operator++() { v = v->next; return *this; }
 				Iterator& operator--() { v = v->prev; return *this; }
+				
+				//post-increment: preserves
+				Iterator operator++(int) {
+					Iterator temp(v);
+					operator++();
+					return temp;
+				}
+				Iterator operator--(int) {
+					Iterator temp(v);
+					operator++();
+					return temp;
+				}
 				friend class List;
 			private:
 				//current node
