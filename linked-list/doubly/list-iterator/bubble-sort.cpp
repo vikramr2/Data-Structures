@@ -4,10 +4,13 @@
 using std::cout;
 using std::endl;
 
+//bubble sort algo
 template <typename T>
 void sort(List<T>& S) {
 	int n = S.size();
+	//passes
 	for (int i = 0; i < n; i++) {
+		//swaps if ith is greater than i+1th
 		for (int j = 1; j < n-1; j++) {
 			typename List<T>::Iterator prec = S.atIndex(j-1);
 			typename List<T>::Iterator succ = S.atIndex(j);
