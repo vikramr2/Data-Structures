@@ -60,6 +60,7 @@ class Tree {
 		//root, left->right
 		void preorder() { preorderHelper(_root, 0); }
 		
+		//recurse from root
 		int height() { return height(_root); }
 	private:
 		node* _root;
@@ -77,8 +78,11 @@ class Tree {
 			}
 		}
 		
+		//recursive height algo
 		int height(node* v) {
 			if (!v) return 0;
+			
+			//get 1 + max height of subtrees
 			int max = 1;
 			for (typename list<node*>::iterator i = v->children.begin(); i != v->children.end(); ++i) {
 				if (1 + height(*i) > max) {
