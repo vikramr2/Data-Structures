@@ -79,7 +79,7 @@ class BinaryTree {
 			cout << *(*v) << ' ';
 		}
 		
-		//height
+		//height recursive function
 		int heightHelper(node* v) {
 			if (!v) return 0;
 			return 1 + max(heightHelper(v->left), heightHelper(v->right));
