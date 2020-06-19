@@ -17,7 +17,7 @@ class VectorTree {
 		~VectorTree() { delete data; }
 		
 		//number of nodes is simply the length of the vector
-		int size() const { return data->size(); }
+		int size() const { return data->size()-1; }
 		
 		bool empty() const { return (size()==1); }
 		
