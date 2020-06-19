@@ -12,7 +12,8 @@ class PriorityQueue {
 			S key;
 			T value;
 			
-			//must overload <, > for comparisons to work in heap operations
+			/*must overload <, > for comparisons to work in heap operations
+			  keep in mind that we compare keys and not values*/
 			bool operator<(const pair& other) { return key < other.key; }
 			bool operator>(const pair& other) { return key > other.key; }
 		};

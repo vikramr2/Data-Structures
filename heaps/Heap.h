@@ -16,6 +16,7 @@ class Heap {
 		Heap() : data(new vector<T>) {
 			data->push_back(T());
 		}
+		
 		~Heap() { delete data; }
 		
 		//size is therefore the vector's size minus 1
