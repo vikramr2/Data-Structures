@@ -64,6 +64,14 @@ class BST {
 			inorderHelper(root);
 			cout << endl;
 		}
+		
+		/*careful, if there will be any dangling nodes, call destructor first.
+		  this is meant for AVL insertions*/
+		void resetRoot(node* n) { root = n; }
+		
+		node* getRoot() { return root; }
+		
+		int height() { return height(root); }
 	private:
 		node* root;
 		
@@ -114,9 +122,16 @@ class BST {
 		* @param n: current node being inspected*/
 		node* removeHelper(T e, node* n) {
 			if (!n) return NULL;
+			
+			//recurse in correct direction
 			if (e < *(*n)) n->left = removeHelper(e, n->left);
 			else if (e > *(*n)) n->right = removeHelper(e, n->right);
+			
+			//if we're exactly where we want to remove
 			else {
+				//check leaves and act accordingly
+				
+				//if only one leaf exists, move it up
 				if (!(n->left)) {
 					node* t = n->right;
 					delete n;
@@ -127,6 +142,7 @@ class BST {
 					return t;
 				}
 				
+				//if no leaves exist, move inorder successor up
 				node* t = ++n;
 				n->data = t->data;
 				n->right = removeHelper(t->data, n->right);
@@ -154,5 +170,11 @@ class BST {
 			destroy(n->left);
 			destroy(n->right);
 			delete n;
+		}
+		
+		//height recursive function
+		int height(node* n) {
+			if (!n) return 0;
+			return 1 + max(height(n->left), height(n->right));
 		}
 };
