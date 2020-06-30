@@ -72,11 +72,10 @@ class BST {
 		node* getRoot() { return root; }
 		
 		int height() { return height(root); }
-	private:
+	protected:
 		node* root;
 		
 		//helpers:
-		
 		/** recursive insertion helper
 		* @param e: node to insert
 		* @param n: current node being inspected*/

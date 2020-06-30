@@ -32,6 +32,7 @@ class AVL {
 		};
 	public:
 		AVL() : root(NULL) {}
+		~AVL() { destroy(root); }
 		
 		//same implementation as BST
 		node* find(T e) { return findHelper(e, root); }
@@ -66,7 +67,7 @@ class AVL {
 		
 		//height will just recurse from root and count levels
 		int height() { return height(root); }
-	private:
+	protected:
 		node* root;
 		
 		
@@ -82,6 +83,14 @@ class AVL {
 			inorderHelper(n->left);
 			cout << n->data << ' ';
 			inorderHelper(n->right);
+		}
+		void destroy(node* n) {
+			if (!n) return;
+			
+			//destroy subtrees, then delete current node
+			destroy(n->left);
+			destroy(n->right);
+			delete n;
 		}
 		
 		/**INSERTION/REMOVAL HELPERS*/
